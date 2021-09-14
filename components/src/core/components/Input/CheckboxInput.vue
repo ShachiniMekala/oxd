@@ -40,8 +40,11 @@
         :class="classes"
         :style="style"
         class="oxd-checkbox-input"
-        :tooltip="disabledTooltip"
-        :flow="tooltipPosition"
+        v-bind="
+          disabledTooltip
+            ? {flow: tooltipPosition, tooltip: disabledTooltip}
+            : {}
+        "
       >
         <oxd-icon
           class="oxd-checkbox-input-icon"
