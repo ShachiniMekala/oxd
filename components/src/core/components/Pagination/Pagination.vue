@@ -1,0 +1,253 @@
+<template>
+  <nav role="navigation" aria-label="Pagination Navigation">
+    <ul v-if="showPagination" class="oxd-pagination__ul">
+      <oxd-pagination-page-item
+        previous
+        @click="onClickPrevious"
+        v-if="showPrevious"
+      />
+      <oxd-pagination-page-item
+        v-if="pageItems.indexOf(1) === -1"
+        :page="1"
+        :selected="1 === currentPage"
+        @click="onClickPage(1, $event)"
+      />
+      <span
+        v-if="pageItems.indexOf(1) === -1 && pageItems[0] > 2"
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
+        v-for="page in pageItems"
+        :key="page"
+        :page="page"
+        :selected="page === currentPage"
+        @click="onClickPage(page, $event)"
+      />
+      <span
+        v-if="
+          !(pageItems[pageItems.length - 1] === length) &&
+            pageItems[pageItems.length - 1] < length - 1
+        "
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
+        v-if="!(pageItems[pageItems.length - 1] === length)"
+        :page="length"
+        :selected="length === currentPage"
+        @click="onClickPage(length, $event)"
+      />
+      <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
+      <oxd-select-input
+        class="pagination-dropdown"
+        :options="perPages"
+        @update:modelValue="selectPerPage"
+        :model-value="perPageData"
+        :hide-dropdown-default-label="true"
+      />
+    </ul>
+  </nav>
+</template>
+
+<script lang="ts">
+import {defineComponent, PropType} from 'vue';
+import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
+import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
+import {pageableMixin} from '../../../mixins/pageable';
+
+export default defineComponent({
+  name: 'oxd-pagination',
+
+  components: {
+    'oxd-pagination-page-item': PageItem,
+    'oxd-select-input': SelectInput,
+  },
+
+  mixins: [pageableMixin],
+
+  emits: ['previous', 'next', 'update:current', 'clickPage'],
+
+  data() {
+    return {
+      pagePointer: this.current,
+      perPageData: {
+        id: 2,
+        label: 20,
+      },
+    };
+  },
+
+  props: {
+    length: {
+      type: Number as PropType<number>,
+      required: true,
+      validator: (val: number) => Number.isInteger(val),
+    },
+    max: {
+      type: Number as PropType<number>,
+      default: 5,
+      validator: (val: number) => Number.isInteger(val),
+    },
+    current: {
+      type: Number as PropType<number>,
+      default: 1,
+      validator: (val: number) => Number.isInteger(val),
+    },
+    totalRecordsCount: {
+      type: Number as PropType<number>,
+      default: 0,
+      validator: (val: number) => Number.isInteger(val),
+    },
+    pagesList: {
+      type: Array as PropType<number[]>,
+      default: () => [10, 20, 50, 100],
+    },
+    perPage: {
+      type: Number as PropType<number>,
+      default: () => 20,
+    },
+  },
+
+  watch: {
+    current: {
+      deep: true,
+      handler(value) {
+        this.currentPage = value;
+      },
+    },
+  },
+
+  computed: {
+    perPages() {
+      return this.pagesList.map((page, index) => {
+        return {
+          id: ++index,
+          label: page,
+        };
+      });
+    },
+    currentPage: {
+      get(): number {
+        if (this.current < 1 || this.current > this.length) {
+          // eslint-disable-next-line no-console
+          console.error('Invalid `current` prop');
+        } else if (this.pagePointer < 1 || this.pagePointer > this.length) {
+          return 1;
+        }
+        return this.pagePointer;
+      },
+      set(newValue: number) {
+        if (newValue < 1 || newValue > this.length) {
+          // eslint-disable-next-line no-console
+          console.error('Invalid assignment to `currentPage`');
+        } else {
+          this.pagePointer = newValue;
+        }
+      },
+    },
+    showPrevious(): boolean {
+      return this.currentPage > 1;
+    },
+    showNext(): boolean {
+      return this.currentPage < this.length;
+    },
+    pageItems(): Array<number> {
+      if (this.currentPage < 1 || this.currentPage > this.length) {
+        // eslint-disable-next-line no-console
+        console.error('Invalid `current` prop');
+      }
+
+      const maxLength = this.max;
+      const currentPage = this.currentPage;
+      if (this.length <= maxLength) {
+        return this.range(1, this.length);
+      }
+
+      const even = maxLength % 2 === 0 ? 1 : 0;
+      const middle = Math.floor(maxLength / 2);
+      let start = currentPage - middle;
+      let end = currentPage + middle - even;
+
+      if (start < 0) {
+        start = 0;
+      }
+      if (end > this.length) {
+        end = this.length;
+      }
+      if (currentPage <= middle) {
+        end = maxLength;
+      }
+      if (currentPage > this.length - middle) {
+        start = this.length - maxLength + 1;
+      }
+
+      return this.range(start, end);
+    },
+
+    showPagination() {
+      if (this.totalRecordsCount <= this.pagesList[0] && this.length <= 1) {
+        return false;
+      }
+      return true;
+    },
+  },
+
+  methods: {
+    onClickPrevious(e: Event) {
+      this.currentPage--;
+      this.$emit('update:current', this.currentPage);
+      this.$emit('previous', e);
+    },
+    onClickPage(page: number, e: Event) {
+      this.currentPage = page;
+      this.$emit('update:current', this.currentPage);
+      this.$emit('clickPage', {
+        page,
+        native: e,
+      });
+    },
+    onClickNext(e: Event) {
+      this.currentPage++;
+      this.$emit('update:current', this.currentPage);
+      this.$emit('next', e);
+    },
+    range(from: number, to: number): Array<number> {
+      const range = [];
+      from = from > 0 ? from : 1;
+      if (from > to) {
+        // eslint-disable-next-line no-console
+        console.error('`from` is bigger than `to`');
+      }
+      for (let i = from; i <= to; i++) {
+        range.push(i);
+      }
+      return range;
+    },
+    selectPerPage(val: {id: number; label: number}) {
+      this.perPageData = val;
+      this.currentPage = 1;
+      this.$emit('onPerPageSelect', val);
+    },
+  },
+
+  mounted() {
+    const pageIndex: number =
+      this.pagesList.findIndex((page: number) => page === this.perPage) + 1;
+    this.perPageData = {
+      id: pageIndex,
+      label: this.perPage,
+    };
+  },
+});
+</script>
+
+<style src="./pagination.scss" lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+:deep(.pagination-dropdown .oxd-select-text-input) {
+  min-width: 59px;
+}
+</style>

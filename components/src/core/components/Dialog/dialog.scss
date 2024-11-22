@@ -1,0 +1,38 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-dialog-close-button-position {
+  position: absolute;
+  top: $oxd-dialog-close-button-top;
+  right: $oxd-dialog-close-button-right;
+  :deep(.oxd-icon) {
+    transform: translate(0.25px, 0.5px);
+  }
+}
+
+.oxd-dialog-sheet {
+  z-index: $oxd-dialog-z-index;
+  position: relative;
+  box-sizing: border-box;
+
+  &--shadow {
+    box-shadow: $oxd-dialog-sheet-box-shadow;
+
+    // Safari has issues with Backdrop-Filter: Blur and Box-Shadow
+    // This is known to resolve many unusual animations on Webkit browsers.
+    // Ref: https://copyprogramming.com/howto/backdrop-filter-blur-box-shadow-not-rendering-properly-in-safari
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

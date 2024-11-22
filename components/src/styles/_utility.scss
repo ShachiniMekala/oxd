@@ -1,0 +1,325 @@
+// flexbox begins
+.d-flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.align-center {
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+// flexbox ends
+
+// table begins
+.d {
+  &-table {
+    display: table;
+    &-cell {
+      display: table-cell;
+    }
+  }
+  &-none {
+    display: none !important;
+  }
+}
+// table ends
+
+.w-100 {
+  width: 100% !important;
+}
+.mx-w-100 {
+  max-width: 100% !important;
+}
+.h-100 {
+  height: 100% !important;
+}
+.mx-h-100 {
+  max-height: 100% !important;
+}
+
+.vw-100 {
+  width: 100vw;
+}
+.vh-100 {
+  width: 100vh;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.overflow {
+  &-hidden {
+    overflow: hidden;
+  }
+}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+/* START TOOLTIP STYLES */
+[tooltip] {
+  position: relative; /* opinion 1 */
+}
+
+/* Applies to all tooltips */
+[tooltip]::before,
+[tooltip]::after {
+  text-transform: none; /* opinion 2 */
+  font-size: 0.875rem;
+  font-weight: 400;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  opacity: 0;
+}
+[tooltip]::before {
+  content: '';
+  border: 5px solid transparent; /* opinion 4 */
+  z-index: $oxd-tooltip-bg-z-index; /* absurdity 1 */
+}
+[tooltip]::after {
+  line-height: 1.5;
+  content: attr(tooltip); /* magic! */
+
+  /* most of the rest of this is opinion */
+  font-family: $oxd-font-family;
+  text-align: center;
+  font-style: normal;
+
+  /* 
+      Let the content set the size of the tooltips 
+      but this will also keep them from being obnoxious
+      */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: max-content;
+  max-width: 300px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 25px 25px 0 rgba(0, 0, 0, 0.18);
+  background: $oxd-interface-gray-darken-1-color;
+  color: #fff;
+  z-index: $oxd-tooltip-font-z-index; /* absurdity 2 */
+}
+
+/* Make the tooltips respond to hover */
+[tooltip]:hover::before,
+[tooltip]:focus-visible::before,
+[tooltip]:hover::after,
+[tooltip]:focus-visible::after {
+  display: block;
+}
+
+/* don't show empty tooltips */
+[tooltip='']::before,
+[tooltip='']::after {
+  display: none !important;
+}
+
+/* FLOW: UP */
+[tooltip]:not([flow])::before,
+[tooltip][flow^='top']::before {
+  bottom: 100%;
+  border-bottom-width: 0;
+  border-top-color: $oxd-interface-gray-darken-1-color;
+}
+[tooltip]:not([flow])::after,
+[tooltip][flow^='top']::after {
+  bottom: calc(100% + 5px);
+}
+[tooltip]:not([flow])::before,
+[tooltip]:not([flow])::after,
+[tooltip][flow^='top']::before,
+[tooltip][flow^='top']::after {
+  left: 50%;
+  transform: translate(-50%, -0.5em);
+}
+
+/* FLOW: DOWN */
+[tooltip][flow^='bottom']::before {
+  top: 100%;
+  border-top-width: 0;
+  border-bottom-color: $oxd-interface-gray-darken-1-color;
+}
+[tooltip][flow^='bottom']::after {
+  top: calc(100% + 5px);
+}
+[tooltip][flow^='bottom']::before,
+[tooltip][flow^='bottom']::after {
+  left: 50%;
+  transform: translate(-50%, 0.5em);
+}
+
+/* FLOW: LEFT */
+[tooltip][flow^='left']::before {
+  top: 50%;
+  border-right-width: 0;
+  border-left-color: $oxd-interface-gray-darken-1-color;
+  left: calc(0em - 5px);
+  transform: translate(-0.5em, -50%);
+}
+[tooltip][flow^='left']::after {
+  top: 50%;
+  right: calc(100% + 5px);
+  transform: translate(-0.5em, -50%);
+}
+
+/* FLOW: RIGHT */
+[tooltip][flow^='right']::before {
+  top: 50%;
+  border-left-width: 0;
+  border-right-color: $oxd-interface-gray-darken-1-color;
+  right: calc(0em - 5px);
+  transform: translate(0.5rem, -50%);
+}
+[tooltip][flow^='right']::after {
+  top: 50%;
+  left: calc(100% + 4px);
+  transform: translate(0.5em, -50%);
+}
+
+/* KEYFRAMES */
+@keyframes tooltips-vert {
+  to {
+    opacity: 0.9;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes tooltips-horz {
+  to {
+    opacity: 0.9;
+    transform: translate(0, -50%);
+  }
+}
+
+/* FX All The Things */
+[tooltip]:not([flow]):hover::before,
+[tooltip]:not([flow]):hover::after,
+[tooltip][flow^='top']:hover::before,
+[tooltip][flow^='top']:hover::after,
+[tooltip][flow^='bottom']:hover::before,
+[tooltip][flow^='bottom']:hover::after,
+[tooltip]:not([flow]):focus-visible::before,
+[tooltip]:not([flow]):focus-visible::after,
+[tooltip][flow^='top']:focus-visible::before,
+[tooltip][flow^='top']:focus-visible::after,
+[tooltip][flow^='bottom']:focus-visible::before,
+[tooltip][flow^='bottom']:focus-visible::after {
+  animation: tooltips-vert 300ms ease-out forwards;
+}
+
+[tooltip][flow^='left']:hover::before,
+[tooltip][flow^='left']:hover::after,
+[tooltip][flow^='right']:hover::before,
+[tooltip][flow^='right']:hover::after,
+[tooltip][flow^='left']:focus-visible::before,
+[tooltip][flow^='left']:focus-visible::after,
+[tooltip][flow^='right']:focus-visible::before,
+[tooltip][flow^='right']:focus-visible::after {
+  animation: tooltips-horz 300ms ease-out forwards;
+}
+
+.--positon-top {
+  bottom: 100%;
+  margin-bottom: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-right {
+  left: 100%;
+  margin-left: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-left {
+  right: 100%;
+  margin-right: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-bottom {
+  margin-top: $oxd-dropdown-dropdown-margin;
+}
+
+// cursor types begins
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+  &-default {
+    cursor: default;
+  }
+}
+
+// spacing begins
+$spaces: (
+  0: 0,
+  1: 0.125,
+  2: 0.25,
+  3: 0.5,
+  4: 0.75,
+  5: 1,
+  6: 1.125,
+  7: 1.25,
+  8: 1.5,
+  9: 1.75,
+  10: 2,
+);
+$sides: (
+  '': 'all',
+  't': 'top',
+  'b': 'bottom',
+  'l': 'left',
+  'r': 'right',
+);
+
+// iterate through spaces array of objects
+@each $index, $space in $spaces {
+  // iterate through sides array of objects
+  @each $prefix, $value in $sides {
+    $property: if($prefix == '', '', -#{$value});
+
+    .oxd-m#{$prefix}-#{$index} {
+      margin#{$property}: #{$space}rem;
+    }
+
+    .oxd-p#{$prefix}-#{$index} {
+      padding#{$property}: #{$space}rem;
+    }
+  }
+}
+// spacing ends

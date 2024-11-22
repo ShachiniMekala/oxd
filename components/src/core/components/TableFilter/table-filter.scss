@@ -1,0 +1,49 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-table-filter {
+  background-color: $oxd-white-color;
+  border-radius: 1.2rem;
+  padding: 0.5rem;
+
+  .oxd-table-filter-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    .oxd-table-filter-header-title {
+      display: flex;
+      align-items: center;
+      .oxd-table-filter-title {
+        font-size: 14px;
+        font-weight: 800;
+      }
+    }
+
+    .oxd-table-filter-header-bulk-actions .--actions {
+      display: flex;
+      align-items: center;
+    }
+
+    &.spilled .oxd-table-filter-header-bulk-actions {
+      order: 1;
+      margin-top: 0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .oxd-table-filter-header-options {
+      margin-left: auto;
+      display: flex;
+      @include oxd-respond-to('md') {
+        padding: 0;
+      }
+
+      .--toggle,
+      .--export {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

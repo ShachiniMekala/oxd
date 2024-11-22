@@ -1,0 +1,48 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-textarea {
+  @include oxd-input-control;
+  @include oxd-input-control-size;
+  @include oxd-scrollbar(
+    $oxd-textarea-scrollbar-thumb-color,
+    $oxd-textarea-scrollbar-track-color
+  );
+  min-height: $oxd-textarea-min-height;
+
+  &::placeholder {
+    color: $oxd-textarea-placeholder-color;
+  }
+
+  &--active {
+    border: $oxd-textarea-border--active;
+  }
+
+  &--focus {
+    border: $oxd-textarea-border--focus;
+    box-shadow: $oxd-textarea-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-textarea-border--error;
+    box-shadow: $oxd-textarea-box-shadow--error;
+  }
+
+  &--resize-vertical {
+    resize: vertical;
+  }
+
+  &--resize-horizontal {
+    resize: horizontal;
+  }
+
+  &--resize-none {
+    resize: none;
+  }
+
+  &:disabled,
+  &:read-only {
+    background-color: $oxd-textarea-background--disabled;
+  }
+}

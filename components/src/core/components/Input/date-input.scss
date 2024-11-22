@@ -1,0 +1,121 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-date-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-date-input-calendar {
+  &.--positon-top > .oxd-calendar-wrapper {
+    right: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: calc(50px + $oxd-dropdown-dropdown-margin);
+  }
+  &.--positon-bottom > .oxd-calendar-wrapper {
+    right: 0;
+    width: 100%;
+    position: absolute;
+  }
+}
+
+.oxd-date-input {
+  display: flex;
+  align-items: center;
+  &-icon-wrapper {
+    right: 0.25rem;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: $oxd-dropdown-arrow-width;
+    height: $oxd-dropdown-arrow-height;
+    border-radius: $oxd-dropdown-arrow-border-radius;
+    background-color: $oxd-dropdown-arrow-background-color;
+    color: $oxd-file-button-color;
+    &.--disabled,
+    &.--readonly {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
+    }
+    &:focus {
+      background-color: $oxd-interface-gray-lighten-2-color;
+      border: $oxd-input-border--focus;
+      box-shadow: $oxd-input-box-shadow--focus;
+      outline: 0;
+    }
+    .oxd-date-input-icon {
+      &.--readonly {
+        cursor: unset;
+        background-color: $oxd-white-color;
+        border: 1px $oxd-interface-gray-lighten-1-color;
+        color: $oxd-interface-gray-lighten-1-color;
+      }
+    }
+  }
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 4rem;
+  }
+  &-calendar {
+    top: 50px;
+    right: 0;
+    position: absolute;
+    z-index: $oxd-date-z-index;
+    width: 250px;
+    @include oxd-respond-to('sm') {
+      width: 300px;
+    }
+  }
+  &-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $oxd-date-input-links-margin;
+  }
+  &-link {
+    cursor: pointer;
+    padding: $oxd-date-input-link-padding;
+    border-radius: $oxd-date-input-link-border-radius;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    font-weight: $oxd-date-input-link-font-weight;
+    font-size: $oxd-date-input-link-font-size;
+    &.--today,
+    &.--close {
+      color: $oxd-date-input-link-highlight-color;
+    }
+    &:hover,
+    &:focus-visible {
+      font-weight: $oxd-date-input-link-font-weight-hover;
+    }
+  }
+}
+
+.transition-fade-down-enter-from,
+.transition-fade-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transition: transform $oxd-dropdown-animation-time
+      cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity $oxd-dropdown-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
+}
+
+::v-deep(.oxd-loading-spinner) {
+  width: $oxd-dropdown-loader-height;
+  height: $oxd-dropdown-loader-height;
+}

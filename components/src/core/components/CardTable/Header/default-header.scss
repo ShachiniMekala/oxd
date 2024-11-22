@@ -1,0 +1,11 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-th {
+  text-align: left;
+}
+
+.oxd-table-tr {
+  padding: $oxd-table-tr-padding;
+  background-color: $oxd-table-tr-bg-color;
+}

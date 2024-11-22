@@ -1,0 +1,55 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__message {
+    margin-top: $oxd-input-group-message-margin-top;
+    font-size: $oxd-input-group-message-font-size;
+    font-weight: $oxd-input-group-message-font-weight;
+  }
+
+  &__label-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: $oxd-input-group-label-margin-bottom;
+    :deep(.oxd-label) {
+      overflow-wrap: break-word;
+      word-break: break-all;
+    }
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__label-icon {
+    margin-right: $oxd-input-group-label-icon-margin-right;
+  }
+}
+
+.oxd-text.oxd-input-field-hint {
+  font-size: $oxd-input-field-hint-font-size;
+  font-family: $oxd-input-field-hint-font-family;
+  font-weight: $oxd-input-field-hint-font-weight;
+  color: $oxd-input-field-hint-color;
+  word-break: break-all;
+
+  &.placement-top {
+    margin: $oxd-input-field-hint-margin-positioned-top;
+  }
+  &.placement-bottom {
+    margin: $oxd-input-field-hint-margin-positioned-bottom;
+  }
+}
+
+.oxd-input-group__label-icon {
+  width: $oxd-input-group-label-icon-size;
+  height: $oxd-input-group-label-icon-size;
+}
+.oxd-input-group__label-icon.oxd-svg-icon {
+  align-self: end;
+}

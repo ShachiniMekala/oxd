@@ -1,0 +1,55 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-header-sort {
+  position: relative;
+
+  &-icon {
+    margin-left: 10px;
+    font-size: inherit;
+  }
+
+  &-dropdown {
+    right: 0;
+    display: block;
+    position: absolute;
+    overflow: visible;
+    top: $oxd-table-sort-dropdown-top-margin;
+    box-shadow: $oxd-dropdown-shadow;
+    border: $oxd-dropdown-border;
+    border-radius: $oxd-dropdown-border-radius;
+    background-color: $oxd-dropdown-background-color;
+    z-index: $oxd-dropdown-z-index;
+
+    ul {
+      list-style: none;
+      padding: $oxd-dropdown-ul-padding;
+      margin: 0;
+    }
+
+    &-item {
+      cursor: pointer;
+      text-align: right;
+      font-size: $oxd-table-sort-dropdown-font-size;
+      font-weight: $oxd-table-sort-dropdown-font-weight;
+      color: $oxd-table-sort-dropdown-font-color;
+      padding: $oxd-dropdown-li-padding;
+      border-radius: $oxd-dropdown-border-radius;
+      display: flex;
+      span {
+        margin-left: 5px;
+      }
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: $oxd-dropdown-item-hover-color;
+      }
+      &.--selected {
+        background-color: $oxd-dropdown-item-selected-color;
+      }
+      &:not(:first-child) {
+        margin-top: 3px;
+      }
+    }
+  }
+}

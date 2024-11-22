@@ -1,0 +1,186 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-file-input {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  max-width: 0;
+  width: 0;
+}
+
+.oxd-file-div {
+  @include oxd-input-control;
+  @include oxd-input-control-size;
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  word-wrap: break-word;
+  min-height: $oxd-input-min-height;
+  background-color: $oxd-file-input-background-color;
+
+  &--active {
+    border: $oxd-input-border--active;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+
+  &--disabled,
+  &--readonly {
+    background: $oxd-input-background--disabled;
+    .oxd-file-input-icon,
+    .oxd-file-button {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
+    }
+  }
+}
+
+.oxd-file-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $oxd-file-button-color;
+  border-radius: $oxd-input-control-border-radius;
+  background-color: $oxd-file-button-background-color;
+  font-size: $oxd-file-button-font-size;
+  font-weight: $oxd-file-button-font-weight;
+  height: $oxd-file-button-height;
+  padding: 0 $oxd-file-button-padding-horizontal;
+  margin-left: $oxd-file-input-horizontal-margin;
+}
+
+.oxd-file-input-div {
+  @include oxd-input-control;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &.--placeholder {
+    color: $oxd-input-placeholder-color;
+  }
+}
+
+.oxd-file-input-icon {
+  margin-left: auto;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: $oxd-file-button-width;
+  height: $oxd-file-button-height;
+  min-width: $oxd-file-button-width;
+  border-radius: $oxd-input-control-border-radius;
+  background-color: $oxd-file-button-background-color;
+  margin-right: $oxd-file-input-horizontal-margin;
+}
+
+.oxd-download-box-wrapper {
+  margin-bottom: 10px;
+  .oxd-download-box {
+    cursor: pointer;
+    border-style: solid;
+    border-color: $oxd-file-upload-box-border;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    background-color: $oxd-file-upload-box-background;
+    padding: 10px;
+    width: 150px;
+    height: 90px;
+    color: $oxd-file-upload-box-color;
+
+    .oxd-download-box-doc-icon {
+      justify-content: center;
+
+      :deep(.oxd-svg-icon--medium) {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    .oxd-download-box-download-data {
+      justify-content: center;
+      align-items: center;
+      padding-top: 5px;
+
+      .oxd-download-box-download-text {
+        font-size: 14px;
+        max-width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      .oxd-download-box-download-icon {
+        justify-content: center;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  .oxd-download-box-radio-buttons {
+    margin-left: 10px;
+  }
+}
+
+.oxd-download-box-wrapper {
+  margin-bottom:10px;
+  .oxd-download-box {
+    cursor: pointer;
+    border-style: solid;
+    border-color: $oxd-file-upload-box-border;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    background-color: $oxd-file-upload-box-background;
+    padding: 10px;
+    width: 150px;
+    height: 90px;
+    color: $oxd-file-upload-box-color;
+
+    .oxd-download-box-doc-icon {
+      justify-content: center;
+
+      :deep(.oxd-svg-icon--medium) {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    .oxd-download-box-download-data {
+      justify-content: center;
+      align-items: center;
+      padding-top: 5px;
+
+      .oxd-download-box-download-text {
+        font-size: 14px;
+        max-width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      .oxd-download-box-download-icon {
+        justify-content: center;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  .oxd-download-box-radio-buttons{
+    margin-left: 10px;
+  }
+}

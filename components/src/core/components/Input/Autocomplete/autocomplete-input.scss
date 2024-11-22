@@ -1,0 +1,247 @@
+@import '../../../../styles';
+@import '../variables';
+
+.oxd-autocomplete-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-autocomplete-text-input {
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  width: inherit;
+  border-radius: $oxd-input-control-border-radius;
+  min-height: $oxd-input-min-height;
+  background-color: $oxd-dropdown-dropdown-background;
+
+  &--active {
+    border: $oxd-input-border--active;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+    + .oxd-autocomplete-chips-area {
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  input {
+    @include oxd-input-control;
+    width: 100%;
+    outline: 0;
+    border: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: $oxd-input-background;
+
+    &::placeholder {
+      color: $oxd-input-placeholder-color;
+    }
+  }
+
+  &--disabled,
+  &--readonly {
+    background: $oxd-dropdown-dropdown-background--disabled;
+    input {
+      background-color: transparent;
+    }
+  }
+
+  &--before,
+  &--after {
+    @include oxd-input-control;
+    color: $oxd-dropdown-dropdown-slot-color;
+    border: none;
+    min-width: 0;
+    flex-shrink: 0;
+    margin: 0;
+    &:empty {
+      display: none;
+    }
+  }
+
+  &--before {
+    margin-left: auto;
+    padding-right: 0;
+  }
+  &--after {
+    margin-right: auto;
+    padding-left: 0;
+  }
+  &--clear {
+    color: inherit;
+    font-size: inherit;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: auto;
+    min-height: auto;
+    background-color: inherit;
+    padding: 0 2px;
+  }
+}
+
+.oxd-autocomplete-dropdown {
+  position: absolute;
+  width: inherit;
+  box-sizing: border-box;
+  color: $oxd-dropdown-dropdown-color;
+  z-index: $oxd-dropdown-dropdown-z-index;
+  border: $oxd-dropdown-dropdown-border;
+  padding: $oxd-dropdown-dropdown-padding;
+  box-shadow: $oxd-dropdown-dropdown-box-shadow;
+  border-radius: $oxd-dropdown-dropdown-border-radius;
+  background-color: $oxd-dropdown-dropdown-background;
+  &.--positon-top {
+    bottom: 100%;
+    margin-bottom: $oxd-dropdown-dropdown-margin;
+  }
+  &.--positon-bottom {
+    margin-top: $oxd-dropdown-dropdown-margin;
+  }
+}
+
+.oxd-autocomplete-option {
+  border: 0;
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: inherit;
+  cursor: pointer;
+  color: $oxd-dropdown-option-color;
+  font-size: $oxd-dropdown-option-font-size;
+  font-family: $oxd-dropdown-option-font-family;
+  font-weight: $oxd-dropdown-option-font-weight;
+  padding: $oxd-autocomplete-dropdown-option-padding;
+  margin: $oxd-dropdown-option-margin;
+  background-color: $oxd-dropdown-option-background;
+  min-height: $oxd-dropdown-option-min-height;
+  overflow-wrap: anywhere;
+  span {
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:last-child {
+    border-bottom: unset;
+  }
+  &:hover,
+  &.--focused {
+    border-radius: $oxd-dropdown-option-border-radius;
+    background-color: $oxd-dropdown-option-background--focused;
+  }
+  &.--disabled {
+    border-radius: $oxd-dropdown-option-border-radius;
+    color: $oxd-dropdown-option-color--disabled;
+    cursor: unset;
+    &:hover,
+    &.--focused {
+      background-color: transparent;
+    }
+  }
+  &.--selected {
+    border-radius: $oxd-dropdown-option-border-radius;
+    color: $oxd-dropdown-option-color--selected;
+    cursor: unset;
+    &:hover,
+    &.--focused {
+      background-color: transparent;
+    }
+  }
+  @for $i from 1 through 20 {
+    $value: $i * 0.5;
+    &.--indent-#{$i} {
+      padding-left: #{$value}rem;
+    }
+  }
+}
+
+.oxd-autocomplete-chips-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  & .oxd-autocomplete-chips-selected {
+    display: flex;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    background-color: $oxd-dropdown-chip-background-color;
+    margin-right: $oxd-dropdown-chip-margin;
+    margin-top: $oxd-dropdown-chip-margin;
+    & .--clear {
+      cursor: pointer;
+      border-radius: $oxd-dropdown-chip-border-radius;
+      background-color: $oxd-dropdown-chip-clear-background-color;
+      color: $oxd-dropdown-chip-clear-font-color;
+      margin-left: $oxd-dropdown-chip-margin;
+      width: $oxd-file-button-font-size;
+      height: $oxd-file-button-font-size;
+      font-size: 14px;
+      min-width: auto;
+      min-height: auto;
+      padding: 0;
+      :deep(.oxd-icon) {
+        color: $oxd-dropdown-chip-clear-font-color;
+      }
+      &:hover {
+        background-color: $oxd-interface-gray-darken-1-color;
+      }
+    }
+    & .--disabled,
+    & .--readonly {
+      cursor: unset;
+    }
+    &:focus-within {
+      border: $oxd-input-border--focus;
+    }
+    :deep(.oxd-icon-button) {
+      [class^='bi-']::before,
+      [class*=' bi-']::before {
+        line-height: inherit;
+        display: flex;
+      }
+    }
+  }
+  .pre-selected {
+    color: $oxd-feedback-info-color;
+    background-color: rgba($oxd-feedback-info-color, 0.1);
+    border: 1px solid;
+    .oxd-autocomplete-chip-remover {
+      background-color: $oxd-white-color;
+      :deep(i) {
+        color: $oxd-feedback-info-color !important;
+      }
+      &:hover {
+        :deep(i) {
+          color: $oxd-white-color !important;
+        }
+      }
+    }
+  }
+  &:empty {
+    display: none;
+  }
+}

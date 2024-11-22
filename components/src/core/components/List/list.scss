@@ -1,0 +1,198 @@
+@import '../../../styles';
+
+.oxd-list-container {
+  margin-top: 1.5rem;
+  background-color: $oxd-white-color;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  .oxd-table-left-panel {
+    border-right: 1px solid $oxd-interface-gray-lighten-4-color;
+    min-height: calc(75vh - 20px);
+    flex-shrink: 0;
+    &.with-filters {
+      margin-bottom: 0.25rem;
+    }
+    :deep(.oxd-table-left-panel--header) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .table-header-action-btn-container {
+        margin-bottom: 0.5rem;
+      }
+      .table-header-action-btn {
+        margin: 0 0 1rem 0;
+      }
+      .table-header-action-secondary-btn {
+        margin: 0rem 0 1rem 0.5rem;
+      }
+    }
+    :deep(.oxd-table-left-panel--separator) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    :deep(.oxd-table-left-panel--toggle-btn) {
+      top: 42px;
+    }
+  }
+  .oxd-card-table-wrapper {
+    min-height: calc(75vh - 140px);
+  }
+  .table-card-list-wrapper {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    .list-table-filter {
+      padding: 0 0 0 0;
+      border-radius: 0;
+      :deep(.oxd-table-filter-header) {
+        min-height: 2.5rem;
+        margin-bottom: 0.85rem;
+        .oxd-table-filter-header-title {
+          .oxd-table-filter-title {
+            font-weight: 600;
+            color: $oxd-interface-gray-color;
+            font-size: $oxd-noemal-text-14;
+          }
+        }
+      }
+      &.items-selected {
+        :deep(.oxd-table-filter-header) {
+          .oxd-table-filter-header-title {
+            .oxd-table-filter-title {
+              font-weight: 700;
+              color: $oxd-interface-gray-darken-1-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.table-left-panel-open {
+    .table-card-list-wrapper {
+      flex-grow: 1;
+      width: calc(100% - 200px);
+    }
+  }
+  .oxd-classic-table {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-top: 0;
+    flex-wrap: nowrap;
+    min-height: calc(75vh - 140px);
+    :deep(.oxd-icon-button) {
+      font-size: 15px;
+    }
+    :deep(.oxd-table-th) {
+      &:first-child {
+        padding-left: 0;
+      }
+      text-align: left;
+      padding-top: 0.65rem;
+      padding-bottom: 0.65rem;
+      .oxd-table-header-sort {
+        .oxd-svg-icon {
+          &:hover {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+        }
+      }
+    }
+    :deep(.oxd-table-cell) {
+      &:first-child {
+        padding-left: 0;
+      }
+      flex-wrap: nowrap;
+      .oxd-select-wrapper {
+        max-width: 195px;
+        .oxd-select-text {
+          max-width: 195px;
+          width: -moz-fit-content;
+          width: fit-content;
+        }
+      }
+    }
+    :deep(.oxd-checkbox-input) {
+      @media (min-width: 0px) and (max-width: 1366px) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .oxd-list-container {
+    min-width: 65rem;
+  }
+}
+.margin-left {
+  margin-left: 0.5rem;
+}
+.list-pagination {
+  height: initial;
+  line-height: initial;
+  padding: 0.5rem 0 0 25px;
+  box-shadow: none;
+}
+.oxd-button {
+  display: flex;
+  align-items: center;
+  &:disabled {
+    :deep(svg) {
+      * {
+        fill: $oxd-white-color !important;
+      }
+    }
+  }
+  &.oxd-btn-info-custom {
+    :deep(svg) {
+      * {
+        fill: #17a2b8;
+      }
+    }
+    color: #17a2b8;
+    &:disabled {
+      background-color: $oxd-interface-gray-lighten-1-color !important;
+      color: $oxd-white-color !important;
+    }
+  }
+  &.oxd-btn-danger-custom {
+    :deep(svg) {
+      * {
+        fill: $oxd-feedback-danger-color;
+      }
+    }
+    &:disabled {
+      background-color: $oxd-interface-gray-lighten-1-color !important;
+      color: $oxd-white-color !important;
+    }
+  }
+}
+
+.oxd-autocomplete-search-wrapper {
+  :deep(.oxd-autocomplete-dropdown) {
+    padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+  }
+  :deep(.oxd-autocomplete-option) {
+    padding: 0.25rem 0.75rem;
+  }
+}
+
+.empty-msg-container {
+  vertical-align: top;
+  display: flex;
+  justify-content: center;
+  margin-top: -50vh;
+}
+.empty-msg-pic {
+  width: 10rem;
+  height: 10rem;
+}
+.empty-msg {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+  .caption {
+    color: #818181;
+  }
+}
