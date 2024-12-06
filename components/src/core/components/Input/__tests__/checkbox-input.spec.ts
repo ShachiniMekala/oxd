@@ -110,4 +110,45 @@ describe('CheckboxInput.vue', () => {
     const border = wrapper.find('.border-enabled');
     expect(border.classes()).toContain('--error');
   });
+  it('when there is no disabled tooltip, flow attribute should be default top and tooltip  should not be there', async () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        disabled: true,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const tooltipSpan = wrapper.find('.oxd-checkbox-input');
+    expect(tooltipSpan.exists()).toBeTruthy();
+    expect(tooltipSpan.attributes('tooltip')).toBeFalsy();
+    expect(tooltipSpan.attributes('flow')).toEqual("top");
+  });
+
+  it('when the disabled tooltip is there, checkbox should be disabled and the tooltip should be there', async () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        disabled: true,
+        disabledTooltip: 'This cannot be deleted',
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const tooltipSpan = wrapper.find('.oxd-checkbox-input');
+    expect(tooltipSpan.exists()).toBeTruthy();
+    expect(tooltipSpan.attributes('tooltip')).toBe('This cannot be deleted');
+    expect(tooltipSpan.attributes('flow')).toBe('top');
+  });
+
+  it('when the disabled tooltip is there, checkbox should be disabled and the tooltip can be rendered in bottom', async () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        disabled: true,
+        disabledTooltip: 'This cannot be deleted',
+        tooltipPosition: 'bottom',
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const tooltipSpan = wrapper.find('.oxd-checkbox-input');
+    expect(tooltipSpan.exists()).toBeTruthy();
+    expect(tooltipSpan.attributes('tooltip')).toBe('This cannot be deleted');
+    expect(tooltipSpan.attributes('flow')).toBe('bottom');
+  });
 });
