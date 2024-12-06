@@ -12,7 +12,11 @@
           v-else-if="selectable"
           class="oxd-padding-cell oxd-table-th"
         >
-          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
+          <oxd-checkbox-input
+            v-model="selectAll"
+            :checkIcon="checkIcon"
+            :disabled="selectableDisabled"
+          />
         </oxd-card-th>
 
         <oxd-card-th
@@ -168,6 +172,10 @@ export default defineComponent({
       default: 15,
     },
     partialLoading: {
+      type: Boolean,
+      default: false,
+    },
+    selectableDisabled: {
       type: Boolean,
       default: false,
     },
