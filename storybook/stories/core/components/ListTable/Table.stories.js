@@ -135,6 +135,16 @@ export default {
         },
       },
     },
+    selectableDisabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'If the select of all the items are disabled,  this is true.  Otherwise false. If this is true, select check box of the table header will be disabled',
+        },
+      },
+    },
   },
 };
 
