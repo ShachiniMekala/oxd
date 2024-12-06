@@ -128,3 +128,7 @@
     align-self: center;
   }
 }
+
+span.oxd-checkbox-input[tooltip]::after {
+  max-width: 150px;
+}
