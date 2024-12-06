@@ -36,7 +36,13 @@
         v-bind="$attrs"
         v-model="checked"
       />
-      <span :class="classes" :style="style" class="oxd-checkbox-input" :tooltip="disabledTooltip" :flow="tooltipPosition">
+      <span
+        :class="classes"
+        :style="style"
+        class="oxd-checkbox-input"
+        :tooltip="disabledTooltip"
+        :flow="tooltipPosition"
+      >
         <oxd-icon
           class="oxd-checkbox-input-icon"
           :name="checkIcon"
@@ -65,7 +71,13 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {Position, LABEL_POSITIONS, RIGHT, TOP, TOOLTIP_POSITIONS} from './types';
+import {
+  Position,
+  LABEL_POSITIONS,
+  RIGHT,
+  TOP,
+  TOOLTIP_POSITIONS,
+} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
