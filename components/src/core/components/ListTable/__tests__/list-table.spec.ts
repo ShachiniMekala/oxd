@@ -89,4 +89,47 @@ describe('ListTable > ListTable.vue', () => {
     );
     expect(wrapper.findAllComponents(Skeleton).length).toEqual(6);
   });
+
+  it('should render checkbox-cell and table is selectable when selectable is true and not loading', () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        loading: false,
+        skeleton: false,
+        selectable: true,
+        items: DUMMY_DATA.items,
+        headers: DUMMY_DATA.headers,
+      },
+    });
+
+    const checkboxCells = wrapper.findAll('.checkbox-cell');
+    expect(checkboxCells.length).toBeGreaterThan(0);
+
+    checkboxCells.forEach(cell => {
+      expect(cell.exists()).toBe(true);
+      expect(cell.findComponent({name: 'oxd-checkbox-input'}).exists()).toBe(
+        true,
+      );
+    });
+
+    expect(wrapper.props('selectable')).toBe(true);
+  });
+
+  it('should not render checkbox-cell when selectable is false', () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: false,
+        items: DUMMY_DATA.items,
+        headers: DUMMY_DATA.headers,
+      },
+    });
+
+    const checkboxCells = wrapper.findAll('.checkbox-cell');
+    expect(checkboxCells.length).toBe(0);
+
+    checkboxCells.forEach(cell => {
+      expect(cell.exists()).toBe(false);
+    });
+
+    expect(wrapper.props('selectable')).toBe(false);
+  });
 });
