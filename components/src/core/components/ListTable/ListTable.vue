@@ -15,7 +15,7 @@
           <oxd-checkbox-input
             v-model="selectAll"
             :checkIcon="checkIcon"
-            :disabled="selectableDisabled"
+            :disabled="allSelectDisabled"
           />
         </oxd-card-th>
 
@@ -175,10 +175,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    selectableDisabled: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   setup(props, context) {
@@ -299,6 +295,10 @@ export default defineComponent({
       return props.items;
     });
 
+    const allSelectDisabled = computed(() => {
+      return computedItems.value.every(item => item.isSelectDisabled === true);
+    });
+
     const tableRowClasses = computed(() =>
       computedItems.value.map((_, index: number) => ({
         'oxd-table-card': true,
@@ -348,6 +348,7 @@ export default defineComponent({
       computedItems,
       tableRowClasses,
       computedHeaders,
+      allSelectDisabled,
     };
   },
 
