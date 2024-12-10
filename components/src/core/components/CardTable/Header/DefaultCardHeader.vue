@@ -1,6 +1,4 @@
 <template>
-  <pre>{{ showHeader }}</pre>
-  <pre>{{ tableProps.hideHeaders }}</pre>
   <oxd-card-thead v-if="showHeader && !tableProps.hideHeaders">
     <oxd-card-tr :clickable="false">
       <oxd-card-th
