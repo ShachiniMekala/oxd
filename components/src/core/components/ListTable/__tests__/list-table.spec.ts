@@ -124,4 +124,30 @@ describe('ListTable > ListTable.vue', () => {
     const checkboxCells = wrapper.findAll('.checkbox-cell');
     expect(checkboxCells.length).toBe(0);
   });
+
+  it('when the select is disabled for all the items, check box in the header should be disabled', () => {
+    const DUMMY_DATA_SELECT_DISABLED = {
+      headers: [
+        {name: 'col1', title: 'Column 1', style: {flex: 1}},
+        {name: 'col2', title: 'Column 2', style: {flex: 5}},
+      ],
+      items: [
+        {col1: 'Data 1', col2: 'Data 2', isSelectDisabled: true},
+        {col1: 'Data 2', col2: 'Data 2', isSelectDisabled: true},
+      ],
+      checkedItems: [],
+    };
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: DUMMY_DATA_SELECT_DISABLED.items,
+        headers: DUMMY_DATA_SELECT_DISABLED.headers,
+        selected: DUMMY_DATA_SELECT_DISABLED.checkedItems,
+      },
+    });
+    const tableHeader = wrapper.find('.oxd-table-header');
+    const checkbox = tableHeader.find('input[type="checkbox"]');
+
+    expect(checkbox.attributes('disabled')).toEqual('');
+  });
 });

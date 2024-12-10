@@ -212,12 +212,12 @@
       "allowedActions": {
         "stageSlot": true,
         "downloadResumeSlot": true,
-        "downloadApplicationFormSlot": true,  
+        "downloadApplicationFormSlot": true,
         "compareSlot": true
       },
       "vacancy": null,
       "vacancyId": null,
-      "isSelectDisabled" : true,
+      "isSelectDisabled": true,
       "selectDisabledTooltip": "Not allowed to delete candidates who are in progress"
     },
     {
@@ -333,7 +333,10 @@
         "vacancyName": "Accounts Payable Specialist",
         "vacancyStatus": "1"
       },
-      "vacancyId": "1"
+      "vacancyId": "1",
+      "isSelectDisabled": true,
+      "selectDisabledTooltip": "Not allowed to delete candidates who are in progress",
+      "selectDisabledTooltipPosition": "bottom"
     }
   ],
   "order": {
