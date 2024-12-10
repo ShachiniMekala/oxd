@@ -1,3 +1,11 @@
+2024-12-06 - 6cb384e32c6b56d65cc35801cfd54ba1b3aca5fb - CardTable/Cell/DefaultCellContainer.vue, CardTable/Header/DefaultCardHeader.vue, CardTable/Table/_variables.scss, CardTable/Table/table-row.scss, List/list.scss, ListTable/CellContainer.vue - Add 11px left and right padding for each cell, remove right padding of checkbox cell, make left padding of any first coloumn 5px and right align all action buttons in action class.
+
+2024-12-05 - c041308720a8cf73b879a431e97ff08f997df0a8 - TinyMce/TinyMce.vue - add background image and remove image option  
+
+2024-12-02 - abc536c1864e5c272aac7508bf19066148f0969c - components/Icon/icons.ts - Update oxd-refresh icon fill colour
+
+2024-11-25 - 8f72e7876778929c8f86de9e50362f71c04a6133 - components/Collapsible.vue - getting tooltip flow attribute as a props
+
 2024-11-13 - 52366879d1e5cf23bc23ebd47a2b65c4fbf7b903 - TinyMce/TinyMce.vue - emit editor instance
 
 2024-11-13 - 4bbea12b487254178cac9ca96687bec06379aa7c - PopOver.vue, Dialog.vue, PopOver.stories.js, pop-over.spec.ts - Modified PopOver component to be able to configure as persistent or not, Modified Dialog component to not to be able to close when ESC pressed while persistent is set to true
