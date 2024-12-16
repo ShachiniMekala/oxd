@@ -12,7 +12,11 @@
           v-else-if="selectable"
           class="oxd-padding-cell oxd-table-th checkbox-cell"
         >
-          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
+          <oxd-checkbox-input
+            v-model="selectAll"
+            :checkIcon="checkIcon"
+            :disabled="allSelectDisabled"
+          />
         </oxd-card-th>
 
         <oxd-card-th
@@ -291,6 +295,10 @@ export default defineComponent({
       return props.items;
     });
 
+    const allSelectDisabled = computed(() => {
+      return computedItems.value.every(item => item.isSelectDisabled === true);
+    });
+
     const tableRowClasses = computed(() =>
       computedItems.value.map((_, index: number) => ({
         'oxd-table-card': true,
@@ -340,6 +348,7 @@ export default defineComponent({
       computedItems,
       tableRowClasses,
       computedHeaders,
+      allSelectDisabled,
     };
   },
 

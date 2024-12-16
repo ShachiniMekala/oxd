@@ -9,6 +9,7 @@
       >
         <oxd-checkbox-input
           :checkIcon="checkIcon"
+          :disabled="allSelectDisabled"
           v-model="selectedAll"
           @change="onChangeSelectAll"
         />
@@ -89,6 +90,10 @@ export default defineComponent({
         : 'dash';
     };
 
+    const allSelectDisabled = computed(() => {
+      return tableProps.items.every(item => item.isSelectDisabled === true);
+    });
+
     const state: State = reactive({
       checkIcon: 'oxd-check',
       checkedItems: [...tableProps.selected],
@@ -137,6 +142,7 @@ export default defineComponent({
       tableProps,
       screenState,
       showHeader,
+      allSelectDisabled,
     };
   },
 

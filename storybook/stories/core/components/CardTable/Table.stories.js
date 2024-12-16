@@ -72,6 +72,7 @@ RowOptions.args = {
   items: [
     {col1: 'Data 1', col2: 'Data 2', isSelectable: false, isDisabled: false},
     {col1: 'Data 2', col2: 'Data 2', isSelectable: true, isDisabled: false},
+    {col1: 'Data 3', col2: 'Data 3', isDisabled: false, isSelectDisabled: true, selectDisabledTooltip: "Not allowed to delete data in progress"}
   ],
 };
 
