@@ -1,3 +1,5 @@
+2024-12-16 - f255b3c85791e055d3e20ac17da329997382ab17 - components/src/styles/_utility.scss, storybook/stories/core/components/Button/Button.stories.js - Reduce the max-width of system tooltips to 200px
+
 2024-12-10 - eadf4782dcd2336a5de7efcee2eaaff4a44d1cc9 - CardTable/Cell/Checkbox.vue, Input/CheckboxInput.vue, CardTable/Header/DefaultCardHeader.vue, ListTable/ListTable.vue -  Update Card table, List table bulk selection behavior to match updated OXD standard
 
 2024-12-06 - 6cb384e32c6b56d65cc35801cfd54ba1b3aca5fb - CardTable/Cell/DefaultCellContainer.vue, CardTable/Header/DefaultCardHeader.vue, CardTable/Table/_variables.scss, CardTable/Table/table-row.scss, List/list.scss, ListTable/CellContainer.vue - Add 11px left and right padding for each cell, remove right padding of checkbox cell, make left padding of any first coloumn 5px and right align all action buttons in action class.
