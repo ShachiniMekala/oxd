@@ -171,7 +171,7 @@ export const DisabledWithTooltip = Template.bind({});
 DisabledWithTooltip.args = {
   label: 'Button',
   disabled: true,
-  disabledTooltip: 'Disabled',
+  disabledTooltip: 'Disabled as this cannot be clicked',
   flow: TOOLTIP_BOTTOM,
 };
 
