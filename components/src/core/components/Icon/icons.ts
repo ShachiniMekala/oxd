@@ -2536,7 +2536,7 @@ export const oxdLogsList: icon = {
   value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3061.4 3061.4">
   <path style="fill:currentColor" d="M531.2,2308.1c-61.1,0-113.3-21.7-156.8-65.2-43.5-43.5-65.2-95.8-65.3-156.9V753.3c0-61.1,21.8-113.3,65.3-156.8,43.5-43.5,95.8-65.2,156.8-65.3h1776.9c61.1,0,113.4,21.8,156.9,65.3,43.5,43.5,65.3,95.8,65.2,156.8v666.3h-222.1v-208.3H531.2v874.6h1110.5v222.1H531.2ZM531.2,975.4h1776.9v-222.1H531.2v222.1ZM2197,2530.2v-333.2h-333.2v-222.1h333.2v-333.2h222.1v333.2h333.2v222.1h-333.2v333.2h-222.1Z"/>
   <path style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-width:222.1px" d="M753.3,1752.8h555.3"/>
-</svg>`
+</svg>`,
 };
 
 export const oxdCreatedDate: icon = {
@@ -2563,6 +2563,15 @@ export const oxdPrint: icon = {
 </svg>`,
 };
 
+export const oxdMic: icon = {
+  name: 'oxd-mic',
+  value: `<svg width="100%" height="100%" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g fill="currentColor">
+<path style="fill:currentColor" fill-rule="evenodd" d="M8 0c-.78 0-1.538.29-2.104.821A2.797 2.797 0 005 2.861V8.14c0 .775.328 1.507.896 2.04.566.53 1.323.821 2.104.821.78 0 1.538-.29 2.104-.821A2.797 2.797 0 0011 8.139V2.86c0-.775-.329-1.507-.896-2.04A3.077 3.077 0 008 0zM6.922 1.915A1.578 1.578 0 018 1.5c.413 0 .8.154 1.078.415.276.26.422.601.422.946V8.14c0 .345-.146.686-.422.946A1.578 1.578 0 018 9.5c-.413 0-.8-.154-1.078-.415-.276-.26-.422-.601-.422-.946V2.86c0-.345.146-.686.422-.946z" clip-rule="evenodd"/>
+<path style="fill:currentColor" d="M4 6.75a.75.75 0 00-1.5 0v1.385a5.3 5.3 0 001.619 3.801A5.553 5.553 0 007.25 13.45v1.05H5.5a.75.75 0 000 1.5h5a.75.75 0 000-1.5H8.75v-1.05a5.553 5.553 0 003.131-1.514A5.3 5.3 0 0013.5 8.135V6.75a.75.75 0 00-1.5 0v1.385a3.8 3.8 0 01-1.164 2.725A4.071 4.071 0 018 12a4.071 4.071 0 01-2.836-1.14A3.8 3.8 0 014 8.135V6.75z"/>
+</g>
+</svg>`,
+};
 
 const icons: Icons = {
   'oxd-likes': oxdLikes,
@@ -2841,6 +2850,7 @@ const icons: Icons = {
   'oxd-created-date': oxdCreatedDate,
   'oxd-modified-date': oxdModifiedDate,
   'oxd-print': oxdPrint,
+  'oxd-mic': oxdMic,
 };
 
 export default icons;
